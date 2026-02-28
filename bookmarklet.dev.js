@@ -74,7 +74,7 @@ var strings={
 		"btnShowUnmatch":"SHOW UNMATCHED",
 		"btnShowAll":"SHOW ALL",
 		"btnDownloadCsv":"DOWNLOAD CSV",
-		"btnClose":"CLOSE"
+		"btnClose":"FINISH"
 	},
 	"ja":{
 		"starting":"処理開始中 ....",
