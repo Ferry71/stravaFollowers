@@ -65,7 +65,7 @@ style+='</style>';
 var lang=detectLang();
 var strings={
 	"en":{
-		"starting":"Starting ....",
+		"starting":"Init ....",
 		"analyzingFollowing":"Counting followings",
 		"analyzingFollowers":"Counting followers",
 		"following":"following",
