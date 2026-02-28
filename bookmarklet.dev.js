@@ -65,7 +65,7 @@ style+='</style>';
 var lang=detectLang();
 var strings={
 	"en":{
-		"starting":"Init ....",
+		"starting":"Starting ....",
 		"analyzingFollowing":"Counting followings",
 		"analyzingFollowers":"Counting followers",
 		"following":"following",
@@ -74,7 +74,7 @@ var strings={
 		"btnShowUnmatch":"SHOW UNMATCHED",
 		"btnShowAll":"SHOW ALL",
 		"btnDownloadCsv":"DOWNLOAD CSV",
-		"btnClose":"FINISH"
+		"btnClose":"CLOSE"
 	},
 	"ja":{
 		"starting":"処理開始中 ....",
@@ -232,14 +232,7 @@ function start(){
 		var countObj = {
 			"following":{
 				"count":props.appContext.followingCount,
-				"href":'https://www.strava.com/athletes/' + myId + '/follows?type=following',
-				"list":[],
-				"page":0,
-				"complete":false
-			},
-			"followers":{
-				"count":props.appContext.followersCount,
-				"href":'https://www.strava.com/athletes/' + myId + '/follows?type=followers',
+				"href":'https://www.strava.com/clubs/166300/members',
 				"list":[],
 				"page":0,
 				"complete":false
@@ -265,21 +258,6 @@ function getList(DYNAMIC){
 				}
 				var percentile = Math.floor(100 * (DYNAMIC.following.list.length/DYNAMIC.following.count));
 				$('#blinking_text_xyz').text(strings[lang].analyzingFollowing);
-				$('#progressbar_inner_b_xyz').text(percentile+'%').stop(true,true).animate({'width':percentile+'%'});
-				getList(DYNAMIC);
-			})
-		}else if(!DYNAMIC.followers.complete){
-			DYNAMIC.followers.page++;
-			$.ajax({url:DYNAMIC.followers.href + '&page=' + DYNAMIC.followers.page,dataType:'json'}).fail(function(){
-				console.log('error')
-			}).done(function(data){
-				if(data.follows.length > 0){
-					DYNAMIC.followers.list = DYNAMIC.followers.list.concat(data.follows);
-				}else{
-					DYNAMIC.followers.complete = true;
-				}
-				var percentile = Math.floor(100 * (DYNAMIC.followers.list.length/DYNAMIC.followers.count));
-				$('#blinking_text_xyz').text(strings[lang].analyzingFollowers);
 				$('#progressbar_inner_b_xyz').text(percentile+'%').stop(true,true).animate({'width':percentile+'%'});
 				getList(DYNAMIC);
 			})
